@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buch-Explorer — Entdecke dein nächstes Buch</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body data-theme="light">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <span class="logo-icon">📖</span>
+        <span class="logo-text">Book<em>Explorer</em></span>
+      </div>
+      <nav class="header-nav">
+        <button class="nav-btn active" data-view="search">Entdecken</button>
+        <button class="nav-btn" data-view="reading">Meine Liste <span class="badge" id="list-count">0</span></button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Theme wechseln">
+          <span class="sun">☀</span><span class="moon">☽</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / Search -->
+  <section class="hero" id="view-search">
+    <div class="container">
+      <h1 class="hero-title">Dein nächstes<br /><em>großes Buch</em> wartet.</h1>
+      <p class="hero-sub">Suche in Millionen von Titeln. Verwalte deine Leseliste.</p>
+      <form class="search-form" id="search-form" onsubmit="return false;">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Titel, Autor oder Thema …"
+          autocomplete="off"
+        />
+        <button class="search-btn" id="search-btn">Suchen</button>
+      </form>
+      <div class="genre-pills">
+        <button class="pill" data-q="homeopathy">Homöopathie</button>
+        <button class="pill" data-q="philosophy medicine">Philosophie</button>
+        <button class="pill" data-q="natural healing">Naturheilkunde</button>
+        <button class="pill" data-q="psychology">Psychologie</button>
+        <button class="pill" data-q="history">Geschichte</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <main class="container">
+    <div id="results-header" class="results-header hidden">
+      <span id="results-title"></span>
+      <span id="results-count" class="muted"></span>
+    </div>
+    <div id="skeleton-grid" class="book-grid hidden">
+      <!-- Skeleton placeholders injected by JS -->
+    </div>
+    <div id="book-grid" class="book-grid"></div>
+    <div id="empty-state" class="empty-state hidden">
+      <div class="empty-icon">🔍</div>
+      <p>Keine Bücher gefunden. Versuche einen anderen Suchbegriff.</p>
+    </div>
+
+    <!-- Reading List View -->
+    <section id="view-reading" class="hidden">
+      <div class="reading-header">
+        <h2>Meine Leseliste</h2>
+      </div>
+      <div class="reading-tabs">
+        <button class="tab-btn active" data-status="reading">Am Lesen</button>
+        <button class="tab-btn" data-status="want">Möchte lesen</button>
+        <button class="tab-btn" data-status="done">Gelesen</button>
+      </div>
+      <div id="reading-list" class="book-grid"></div>
+      <div id="reading-empty" class="empty-state hidden">
+        <div class="empty-icon">📚</div>
+        <p>Noch keine Bücher in dieser Kategorie.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-inner" id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast hidden" id="toast"></div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Betrieben von <a href="https://openlibrary.org" target="_blank">Open Library API</a> · Erstellt mit Vanilla JS · <a href="https://github.com" target="_blank">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
